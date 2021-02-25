@@ -14,7 +14,7 @@ function getFood() {
             menu+= `<div>${food.id}. ${food.name} $${food.cost}</div>`
         })
         console.log('5. MENU', menu)
-        document.body.innerHTML = menu
+        // document.body.innerHTML = menu
     }, 1000)
 }
 
@@ -33,7 +33,7 @@ function createMenuItem(food) {
             console.log('3. Yummy!')                      
             const error = false
             if (!error){
-                resolve()
+                resolve(getFood())
             } else {
                 reject('Error')
             }
@@ -47,7 +47,8 @@ function createMenuItem(food) {
 const poppers = { id: 5, name: "Jalapeno poppers", cost: "$4.75"}
 createMenuItem(poppers)
     .then(console.log('1. booo'))     
-    .then(getFood)     
+    .then(resolved => resolved)
+    .catch(reject => reject);     
 /*
 .then() 
     * called on a Promise and takes up to two arguments
